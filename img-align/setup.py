@@ -8,5 +8,5 @@ setup(
     license='',
     author='mlavigne',
     author_email='',
-    description='Perspective Modifier Processing for US files', install_requires=['matplotlib', 'numpy', 'opencv-python']
+    description='Perspective Modifier Processing for US files', install_requires=['matplotlib', 'numpy', 'opencv-python', 'image', 'tqdm']
 )

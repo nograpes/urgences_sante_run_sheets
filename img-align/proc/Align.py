@@ -3,6 +3,8 @@ import numpy as np
 from timeit import default_timer as timer
 from PIL import Image
 from matplotlib import pyplot as plt
+from tqdm import tqdm
+import os
 
 MAX_FEATURES = 1000
 GOOD_MATCH_PERCENT = 0.40
@@ -18,9 +20,10 @@ def prepare_img(filename):
 
 
 class Align:
-    def __init__(self, ref_filename, imgs_filename):
+    def __init__(self, ref_filename, imgs_filename, out_dir):
         self.ref = ref_filename
         self.inputs = imgs_filename
+        self.out_dir = out_dir
 
         self.writeHomography = False
         self.writeMatches = False
@@ -86,7 +89,7 @@ class Align:
         # Processing
         print("Starting matching")
         start = timer()
-        for filename in self.inputs:
+        for filename in tqdm(self.inputs):
             # Load image
             img = prepare_img(filename)
             # Find Best Matches
@@ -129,20 +132,23 @@ class Align:
 
         print("Starting warping")
         start = timer()
-        for filename in self.inputs:
+        composite = Image.fromarray(ref)
+        for filename in tqdm(self.inputs):
             img = prepare_img(filename)
             # Warp image
             dat, hom = self.warp_img_by_matches(
                 img, ref, ref_keypoints, keypoints_dic[filename], matches_dic[filename], idx_to_use)
 
-            # Save warped image
-            results[filename] = dat
+            # Add to composite
+            composite = Image.blend(composite, Image.fromarray(dat), alpha=0.5)
+
+            # Write to file
+            new_path = "%s/%s" % (self.out_dir, os.path.basename(filename))
+            cv2.imwrite(new_path, dat)            
+
+            # results[filename] = dat
+        composite.save("after-composite.jpg")
         end = timer()
         print("Processed warping in %s sec" % round(end - start, 2))
-
-        composite = Image.fromarray(ref)
-        for filename, img in results.items():
-            composite = Image.blend(composite, Image.fromarray(img), alpha=0.5)
-        composite.save("after-composite.jpg")
 
         return results

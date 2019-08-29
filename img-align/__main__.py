@@ -66,12 +66,7 @@ if __name__ == '__main__':
     imgs = glob.glob(imgs_filename)
     assert len(imgs) > 0, "Must have at least one image to convert."
 
-    aligner = Align(ref_filename, imgs)
+    aligner = Align(ref_filename, imgs, out_dir)
 
     aligned_dic = aligner.align()
 
-    # Write to file
-    for path in aligned_dic.keys():
-        new_path = "%s/%s" % (out_dir, os.path.basename(path))
-        # print(new_path)
-        cv2.imwrite(new_path, aligned_dic[path])
