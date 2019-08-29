@@ -81,21 +81,19 @@ class Align:
         keypoints_dic = {}
         matches_dic = {}
 
-        # Loading Images
-        for filename in self.inputs:
-            img_dic[filename] = prepare_img(filename)
-
         # A before composite is difficult to do here, because the images don't all have the same size
 
         # Processing
         print("Starting matching")
         start = timer()
-        for filename, img in img_dic.items():
+        for filename in self.inputs:
+            # Load image
+            img = prepare_img(filename)
             # Find Best Matches
             keypoints, matches = self.find_matches(orb, img, ref_descriptors, GOOD_MATCH_PERCENT)
             keypoints_dic[filename] = keypoints
             matches_dic[filename] = matches
-            img_dic[filename] = img
+            # img_dic[filename] = img
 
             # Draw top matches
             if self.writeMatches:
@@ -132,9 +130,10 @@ class Align:
         print("Starting warping")
         start = timer()
         for filename in self.inputs:
+            img = prepare_img(filename)
             # Warp image
             dat, hom = self.warp_img_by_matches(
-                img_dic[filename], ref, ref_keypoints, keypoints_dic[filename], matches_dic[filename], idx_to_use)
+                img, ref, ref_keypoints, keypoints_dic[filename], matches_dic[filename], idx_to_use)
 
             # Save warped image
             results[filename] = dat
