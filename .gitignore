@@ -5,3 +5,8 @@ aligned/
 
 # Remove cached files
 *.pyc
+
+# For venv on Windows
+pyvenv.cfg
+Lib/
+Scripts/
