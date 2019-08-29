@@ -10,3 +10,6 @@ aligned/
 pyvenv.cfg
 Lib/
 Scripts/
+
+# For setup tools
+*.egg-info
