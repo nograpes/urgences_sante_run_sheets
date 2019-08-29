@@ -1,0 +1,7 @@
+.idea
+venv/
+imgs/
+aligned/
+
+# Remove cached files
+*.pyc
