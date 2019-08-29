@@ -25,7 +25,7 @@ class Align:
         self.writeHomography = False
         self.writeMatches = False
 
-        print("Aligner initialized with with %s images to process" % len(self.inputs))
+        print("Aligner initialized with %s images to process" % len(self.inputs))
 
     def __repr__(self):
         return "[%s, %s]" % (self.ref, self.inputs)

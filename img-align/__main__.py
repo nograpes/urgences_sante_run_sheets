@@ -20,7 +20,7 @@ from proc.Align import Align
 
 def usage():
     """How to call this script"""
-    print("proc.py -ref <ref_image> -img <images> -out <output directory>")
+    print("proc.py --ref <ref_image> --img <images> --out <output directory>")
 
 
 def get_opt():
