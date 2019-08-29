@@ -13,3 +13,7 @@ Scripts/
 
 # For setup tools
 *.egg-info
+
+# Ignore the automatic output of img-align
+after-composite.jpg
+matches.jpg
