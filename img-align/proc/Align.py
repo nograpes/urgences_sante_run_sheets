@@ -133,14 +133,14 @@ class Align:
         print("Starting warping")
         start = timer()
         composite = Image.fromarray(ref)
-        for filename in tqdm(self.inputs):
+        for i, filename in enumerate(tqdm(self.inputs)):
             img = prepare_img(filename)
             # Warp image
             dat, hom = self.warp_img_by_matches(
                 img, ref, ref_keypoints, keypoints_dic[filename], matches_dic[filename], idx_to_use)
 
             # Add to composite
-            composite = Image.blend(composite, Image.fromarray(dat), alpha=0.5)
+            composite = Image.blend(composite, Image.fromarray(dat), alpha= 1/(i+1))
 
             # Write to file
             new_path = "%s/%s" % (self.out_dir, os.path.basename(filename))
