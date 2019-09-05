@@ -66,7 +66,7 @@ if __name__ == '__main__':
     imgs = glob.glob(imgs_filename)
     assert len(imgs) > 0, "Must have at least one image to convert."
 
-    compositor = Compositor.get_running_avg_compositor()
+    compositor = Compositor.get_additive()
 
     aligner = Align(ref_filename, imgs, out_dir, compositor)
 
