@@ -5,9 +5,9 @@ from PIL import Image
 from tqdm import tqdm
 import os
 
-MAX_FEATURES = 1000
+MAX_FEATURES = 5000
 GOOD_MATCH_PERCENT = 0.40
-PERC_COMMON_THRESH = 0.30
+PERC_COMMON_THRESH = 0.40
 KEYPOINT_COLOR_MATCH_FILE = (20, 200, 20)
 MATCH_FILE_NAME = "matches.jpg"
 COMPOSITE_FILE_NAME = "composite.jpg"
