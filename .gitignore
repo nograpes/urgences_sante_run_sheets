@@ -17,4 +17,5 @@ Scripts/
 # Ignore the automatic output of img-align
 *composite*.jpg
 matches.jpg
-.Rproj.user
+*.Rproj.user
+*.Rproj
