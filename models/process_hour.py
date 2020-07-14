@@ -22,13 +22,3 @@ hours_images_paths = [h for h in  map(TimeImage, hours, images, paths) if h.hour
 
 with open('hours.pkl', 'wb') as file:
   pickle.dump(hours_images_paths, file)
-
-with open('hours.pkl', 'rb') as file:
-  b = pickle.load(file)
-
-file = open("hour_pickle.pkl",'wb') 
-pickle.dump(hours_images_paths, file)
-file.close()
-
-file = open("hour_pickle.pkl", 'r')
-pickle.load(file)
