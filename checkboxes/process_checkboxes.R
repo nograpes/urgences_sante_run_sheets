@@ -1,6 +1,7 @@
+# First do file_df.R
 library(readr)
 file.df <- 
-  read_csv("file_df.csv", 
+  read_csv("checkboxes/file_df.csv", 
             col_types = cols(
               file.path = col_character(),
               NoCd = col_character(),
@@ -11,7 +12,7 @@ file.df <-
            progress = FALSE)
 
 my_copy <-
-  read_csv("my_copy.csv",
+  read_csv("checkboxes/my_copy.csv",
            col_types = cols(
              .default = col_character(),
              sHrSV1 = col_time(format = ""),
@@ -48,19 +49,9 @@ my_copy <-
   )
 
 
-# I need to get the images for each of the files.
-# I need to id
-table(my_copy$iIndO2, my_copy$my_check)
-
-head(file.df)
-head(my_copy)
-
 library(dplyr)
 df <- 
   my_copy %>% 
   left_join(file.df, by = "NoRIP") 
 
-
-# Okay, so I have the file.paths of the images. Now I need to cut and downsample.
-df$file.path
-
+# Now do downsampling_checkboxes.

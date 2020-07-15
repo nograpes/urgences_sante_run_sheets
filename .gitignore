@@ -19,3 +19,6 @@ Scripts/
 matches.jpg
 *.Rproj.user
 *.Rproj
+.Rproj.user
+
+checkboxes/data

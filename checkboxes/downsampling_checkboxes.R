@@ -13,6 +13,7 @@ to_2d_array <- function(img) {
 }
 
 downsample <- function(im, interp, scale) {
+  if(length(dim(im)) == 2) dim(im) <- c(dim(im), 1, 1)
   to_2d_array(imresize(im, scale = scale, interp = interp))
 }
 
@@ -42,6 +43,8 @@ plot.runsheet <- function(n, x, y) {
 # Load image files
 image.files <- df$file.path
 ids <- tools:::file_path_sans_ext(basename(image.files))
+dir <- "/data/run_sheets_full"
+files <- with(df, paste(dir, "R48_RIP", NoCd, rip, file, sep = "/"))
 
 # Checkbox
 x <- 2541:3881
@@ -49,11 +52,12 @@ y <- 1439:2600
 # y <- 1150:2937
 
 # Crop.
-system.time(images <- mclapply(image.files[1:2], crop, x = x, y = y))
-
+images <- mclapply(files, crop, x = x, y = y)
 
 # Save raw images as arrays.
-saveRDS(mclapply(images, to_2d_array), file = "data/raw_hour_images.rds")
+dir.create("checkboxes/data")
+saveRDS(mclapply(images, to_2d_array), file = "checkboxes/data/raw_checkbox_images.rds")
+# images <- readRDS("checkboxes/data/raw_checkbox_images.rds")
 
 # Downsampling for all combinations of these parameters
 scales <- c(0.4, 0.3, 0.2)
@@ -64,12 +68,12 @@ downscale.params <- expand.grid(scale = scales, interp = interp)
 for (row in 1:nrow(downscale.params)) {
   scale <- downscale.params$scale[row]
   interp <- downscale.params$interp[row]
-  
+
   arrays <- 
     mclapply(images, downsample, 
              scale = scale, interp = interp)
   
   file <- paste0("checkboxes_", "scale_", scale, "_interp_", interp, ".rds")
   
-  saveRDS(arrays, file = paste0("data/", file))
+  saveRDS(arrays, file = paste0("checkboxes/data/", file))
 }

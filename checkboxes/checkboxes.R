@@ -1,8 +1,9 @@
-file <- "D:\\urgence_sante\\run_sheets_full\\R48_RIP\\rip2.csv"
-library(readr)
-rip2 <- read_delim(file, delim = ";")
+dir <- "/data/run_sheets_full"
+# dir <- "D:\\urgence_sante\\run_sheets_full"
+file <- paste0(dir, "/R48_RIP/rip2.csv")
 
-grep("O2", colnames(rip2), value = TRUE)
+library(readr)
+rip2 <- read_delim(file, delim = ";", progress = FALSE)
 
 dir <- "D:\\urgence_sante\\run_sheets_full\\R48_RIP"
 images <- list.files(dir, recursive = TRUE, pattern = "*.png")
