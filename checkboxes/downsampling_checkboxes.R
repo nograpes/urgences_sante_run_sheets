@@ -68,7 +68,7 @@ downscale.params <- expand.grid(scale = scales, interp = interp)
 for (row in 1:nrow(downscale.params)) {
   scale <- downscale.params$scale[row]
   interp <- downscale.params$interp[row]
-
+  
   arrays <- 
     mclapply(images, downsample, 
              scale = scale, interp = interp)
@@ -77,3 +77,18 @@ for (row in 1:nrow(downscale.params)) {
   
   saveRDS(arrays, file = paste0("checkboxes/data/", file))
 }
+
+write.array.to.image <- function(im, file) {
+  if(length(dim(im)) == 2) dim(im) <- c(dim(im), 1, 1)
+  save.image(cimg(im), file = file)
+}
+
+checkboxes_scale_0.2_interp_3 <- 
+  readRDS("checkboxes/data/checkboxes_scale_0.2_interp_3.rds")
+
+dir.create("little_images")
+little.files <- paste0("little_images/", basename(files))
+invisible(
+  mapply(write.array.to.image, checkboxes_scale_0.2_interp_3, little.files)
+)
+
