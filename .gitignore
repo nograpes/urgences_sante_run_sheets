@@ -20,5 +20,20 @@ matches.jpg
 *.Rproj.user
 *.Rproj
 .Rproj.user
+.RData
+.Rhistory
+*.pkl
 
 checkboxes/data
+
+checkboxes/big_images
+checkboxes/checkbox_model
+checkboxes/*.pkl
+checkboxes/cropped_checkboxes
+checkboxes/green_boxes
+checkboxes/little_images
+checkboxes/logs
+checkboxes/old
+checkboxes/uncoded_green_boxes
+checkboxes/aligned_old
+checkboxes/uncoded_green_boxes
