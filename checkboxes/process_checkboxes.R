@@ -1,5 +1,8 @@
 # First do file_df.R
+library(tidyr)
+suppressPackageStartupMessages(library(dplyr))
 library(readr)
+
 file.df <- 
   read_csv("checkboxes/file_df.csv", 
             col_types = cols(
@@ -54,4 +57,30 @@ df <-
   my_copy %>% 
   left_join(file.df, by = "NoRIP") 
 
-# Now do downsampling_checkboxes.
+
+cropped_checkboxes <- 
+  my_copy %>% 
+  filter(coded == "O") %>%
+  select(NoRIP, starts_with("i")) %>% 
+  pivot_longer(-NoRIP,
+               names_to = "box",
+               values_to = "checked") %>% 
+  mutate(checked = as.integer(checked == "O"),
+         file = paste0(NoRIP, "_", box, ".png")) %>% 
+  select(file, checked)
+
+write_csv(cropped_checkboxes, "checkboxes/cropped_checkboxes.csv")  
+
+cropped_checkboxes_uncoded <- 
+  my_copy %>% 
+  filter(coded == "N") %>%
+  select(NoRIP, starts_with("i")) %>% 
+  pivot_longer(-NoRIP,
+               names_to = "box",
+               values_to = "checked") %>% 
+  mutate(checked = as.integer(checked == "O"),
+         file = paste0(NoRIP, "_", box, ".png")) %>% 
+  select(file, checked)
+
+write_csv(cropped_checkboxes_uncoded, "checkboxes/cropped_checkboxes_uncoded.csv")
+
