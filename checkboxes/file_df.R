@@ -41,6 +41,9 @@ valid.luhn <- function(x) {
 }
 
 data.dir <- "D:/urgence_sante/run_sheets_full/R48_RIP"
+if(Sys.info()['sysname'] == "Linux") {
+  data.dir <- "/data/run_sheets_full/R48_RIP"
+}
 
 all.files <- list.files(data.dir, pattern = "*.png", full.names = TRUE, recursive = TRUE)
 
