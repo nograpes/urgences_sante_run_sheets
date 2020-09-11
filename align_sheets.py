@@ -10,7 +10,12 @@ from timeit import default_timer as timer
 from PIL import Image
 from tqdm import tqdm
 import os
+from pathlib import Path
 import multiprocessing as mp
+
+import pickle
+import copyreg
+
 
 MAX_FEATURES = 5000
 GOOD_MATCH_PERCENT = 0.40
@@ -20,16 +25,20 @@ MATCH_FILE_NAME = "matches.jpg"
 COMPOSITE_FILE_NAME = "composite.jpg"
 
 ref_filename = "/data/run_sheets_full/R48_RIP/E441/RIP3/21543780.png"
-out_dir = "/data/run_sheets_full/aligned/2017-05"
+out_dir = "/data/run_sheets_full/aligned/"
 
 # Read all the file_df data in.
 file_df = pd.read_csv("checkboxes/file_df.csv", low_memory = False)
-imgs = np.array(file_df['file.path'][file_df['sheet_type'] == 'rev 2017-05'])
+file_df['aligned_path'] = [img.replace('/data/run_sheets_full/', out_dir) 
+                           for img in file_df['file.path']]
+sheets = file_df['sheet_type'] == 'rev 2017-05'
+imgs = np.array(file_df['file.path'][sheets])
+out_imgs = np.array(file_df['aligned_path'][sheets])
+
+out_dirs = set(map(os.path.dirname, map(os.path.abspath, out_imgs)))
+for out_dir in out_dirs: Path(out_dir).mkdir(parents=True, exist_ok=True)
 
 compositor = Compositor.get_additive()
-# aligner = Align(ref_filename, imgs, out_dir, compositor)
-# aligned_dic = aligner.align()
-
 
 def prepare_img(filename):
     return cv2.cvtColor(cv2.imread(filename, cv2.IMREAD_COLOR), cv2.COLOR_BGR2GRAY)
@@ -51,6 +60,17 @@ def find_matches(orb, img, ref_descriptors, match_quality_threshold):
     
     return keypoints, matches
 
+# Patch the DMatch and KeyPoint objects in CV2 so that they are picklable.
+def _pickle_keypoints(point):
+    return cv2.KeyPoint, (*point.pt, point.size, point.angle,
+                          point.response, point.octave, point.class_id)
+
+copyreg.pickle(cv2.KeyPoint().__class__, _pickle_keypoints)
+
+def _pickle_dmatches(point):
+    return cv2.DMatch, (point.queryIdx, point.trainIdx, point.imgIdx, point.distance)
+
+copyreg.pickle(cv2.DMatch().__class__, _pickle_dmatches)
 
 orb = cv2.ORB_create(MAX_FEATURES)
 
@@ -64,26 +84,8 @@ def find_match_file(file):
 def find_match_img(img):
     return find_matches(orb, img, ref_descriptors, GOOD_MATCH_PERCENT)
 
-
-import pickle
-import copyreg
-import cv2
-
-def _pickle_keypoints(point):
-    return cv2.KeyPoint, (*point.pt, point.size, point.angle,
-                          point.response, point.octave, point.class_id)
-
-copyreg.pickle(cv2.KeyPoint().__class__, _pickle_keypoints)
-
-
-def _pickle_dmatches(point):
-    return cv2.DMatch, (point.queryIdx, point.trainIdx, point.imgIdx, point.distance)
-
-copyreg.pickle(cv2.DMatch().__class__, _pickle_dmatches)
-
+# Hyperthreading seems to speed things up.
 pool = mp.Pool(mp.cpu_count())
-# mem_imgs = pool.map(prepare_img, (imgs[:500]))
-
 short_imgs = imgs[:5000]
 
 start = timer()
@@ -93,8 +95,6 @@ print("Processed matches in %s sec" % round(end - start, 2))
 
 keypoints_dic = dict(zip(short_imgs, keypoints))
 matches_dic = dict(zip(short_imgs, matches))
-
-results = {}
 
 # A before composite is difficult to do here, because the images don't all have the same size
 
@@ -135,39 +135,37 @@ def warp_img_by_matches(img, ref, ref_keypoints, keypoints, matches, idx_to_use)
     for i, match in enumerate(matches_to_use):
         points1[i, :] = keypoints[match.queryIdx].pt
         points2[i, :] = ref_keypoints[match.trainIdx].pt
-    
-    # Find homography
-    h, mask = cv2.findHomography(points1, points2, cv2.RANSAC)
-    
+
     # Use homography
     height, width = ref.shape
     
     # Wrap and return the data
-    return cv2.warpPerspective(img, h, (width, height)), h
+    return cv2.warpPerspective(img, h, (width, height))
+
+
+warp_img_by_matches(short_imgs[0], ref, ref_keypoints, keypoints, matches, idx_to_use)
 
 filename = short_imgs[0]
+out_img = out_imgs[0]
+
+
+
+
 img = prepare_img(filename)
-dat, hom = warp_img_by_matches(
+dat, _ = warp_img_by_matches(
     img, ref, ref_keypoints, keypoints_dic[filename], matches_dic[filename], idx_to_use)
+
 new_path = "%s/%s" % (out_dir, os.path.basename(filename))
 cv2.imwrite(new_path, dat)
-
-
 
 print("Starting warping")
 start = timer()
 #  composite = Image.fromarray(ref)
-for i, filename in enumerate(tqdm(short_imgs)):
+for filename, new_path in (short_imgs, out_imgs[:5000]):
     img = prepare_img(filename)
     # Warp image
-    dat, hom = warp_img_by_matches(
+    dat, _ = warp_img_by_matches(
         img, ref, ref_keypoints, keypoints_dic[filename], matches_dic[filename], idx_to_use)
     
-    # Add to composite
-    # self.compositor.compose(dat)
-    #  composite = Image.blend(composite, Image.fromarray(dat), alpha=1/(i+1))
-    #  composite = add_composite(composite, dat)
-    
     # Write to file
-    new_path = "%s/%s" % (self.out_dir, os.path.basename(filename))
     cv2.imwrite(new_path, dat)
