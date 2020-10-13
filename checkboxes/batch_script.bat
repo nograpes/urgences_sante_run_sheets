@@ -1,4 +1,5 @@
 python img-align --ref "checkboxes/big_images/21543780.png" --img "checkboxes/big_images/*.png" --out "checkboxes/aligned"
+
 Rscript checkboxes/file_df.R
 python checkboxes/crop_checkboxes.py
 Rscript checkboxes/process_checkboxes.R
