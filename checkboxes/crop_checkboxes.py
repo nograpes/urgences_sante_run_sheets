@@ -27,4 +27,3 @@ for file in files:
         newname = basename + "_" + nm + ".png"
         _ = cv2.imwrite("/".join(("checkboxes/cropped_checkboxes", newname)), new_im)
 
-

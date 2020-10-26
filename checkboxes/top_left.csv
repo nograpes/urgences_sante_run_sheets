@@ -1,52 +1,174 @@
-"checkbox","x","y"
-"iIndAucune",2655,1516
-"iIndInterHorsVoiCarr",2848,1516
-"iIndO2",2655,1555
-"iIndO2Lunette",2698,1599
-"iIndO2Masque",2889,1599
-"iIndCanOro",2805,1641
-"iIndCanNaso",3066,1641
-"iIndSuccion",2655,1682
-"iIndSupResp",2655,1725
-"iIndSRCPAP",2695,1765
-"iIndSROxylator",2695,1803
-"iIndSRBallMasque",2695,1841
-"iIndSuppVent",2655,1882
-"iIndSVMasquePoche",2695,1919
-"iIndSVOxylator",2965,1919
-"iIndSVBallMasque",3145,1919
-"iIndOxyAuto",3145,1843
-"iIndOxyManuel",3145,1875
-"iIndCombitube",2655,1962
-"iIndStd",2905,1962
-"iIndSA",3073,1962
-"iIndTAP1",3173,1962
-"iIndTAP2",3173,1996
-"iIndVPOPos",2808,2029
-"iIndVPONeg",2808,2063
-"iIndVentBleu",3115,2063
-"iIndVentBlanc",3115,2096
-"iIndAppCentreCrise",2655,2138
-"iIndPerfusion1",2857,2263
-"iIndPerfusion2",2857,2345
-"iIndThoracAig",2650,2428
-"iIndCricothy",3080,2428
-"iIndMonit",3380,1516
-"iIndECG12D",3423,1555
-"iIndECG15D",3633,1555
-"iIndIAMEST",3465,1593
-"iIndTelemetrise",3465,1630
-"iIndConten",3380,1667
-"iIndAttImm",3380,1705
-"iIndColCer",3380,1743
-"iIndKED",3380,1780
-"iIndMatImm",3380,1817
-"iIndPediPac",3380,1854
-"iIndPlanDorsal",3380,1892
-"iIndScoop",3380,1930
-"iIndSortieRapide",3380,1967
-"iIndTourniquet",3380,2101
-"iIndExerCorpsEt",3380,2188
-"iIndCardioVer",3380,2226
-"iIndStimCardExt",3380,2263
-"iIndEndo",3563,2347
+checkbox,checkbox_layout,x,y
+iIndAucune,rev 2017-05,2655,1516
+iIndInterHorsVoiCarr,rev 2017-05,2848,1516
+iIndO2,rev 2017-05,2655,1555
+iIndO2Lunette,rev 2017-05,2698,1599
+iIndO2Masque,rev 2017-05,2889,1599
+iIndCanOro,rev 2017-05,2805,1641
+iIndCanNaso,rev 2017-05,3066,1641
+iIndSuccion,rev 2017-05,2655,1682
+iIndSupResp,rev 2017-05,2655,1725
+iIndSRCPAP,rev 2017-05,2695,1765
+iIndSROxylator,rev 2017-05,2695,1803
+iIndSRBallMasque,rev 2017-05,2695,1841
+iIndSuppVent,rev 2017-05,2655,1882
+iIndSVMasquePoche,rev 2017-05,2695,1919
+iIndSVOxylator,rev 2017-05,2965,1919
+iIndSVBallMasque,rev 2017-05,3145,1919
+iIndOxyAuto,rev 2017-05,3145,1843
+iIndOxyManuel,rev 2017-05,3145,1875
+iIndCombitube,rev 2017-05,2655,1962
+iIndStd,rev 2017-05,2905,1962
+iIndSA,rev 2017-05,3073,1962
+iIndTAP1,rev 2017-05,3173,1962
+iIndTAP2,rev 2017-05,3173,1996
+iIndVPOPos,rev 2017-05,2808,2029
+iIndVPONeg,rev 2017-05,2808,2063
+iIndVentBleu,rev 2017-05,3115,2063
+iIndVentBlanc,rev 2017-05,3115,2096
+iIndAppCentreCrise,rev 2017-05,2655,2138
+iIndPerfusion1,rev 2017-05,2857,2263
+iIndPerfusion2,rev 2017-05,2857,2345
+iIndThoracAig,rev 2017-05,2650,2428
+iIndCricothy,rev 2017-05,3080,2428
+iIndMonit,rev 2017-05,3380,1516
+iIndECG12D,rev 2017-05,3423,1555
+iIndECG15D,rev 2017-05,3633,1555
+iIndIAMEST,rev 2017-05,3465,1593
+iIndTelemetrise,rev 2017-05,3465,1630
+iIndConten,rev 2017-05,3380,1667
+iIndAttImm,rev 2017-05,3380,1705
+iIndColCer,rev 2017-05,3380,1743
+iIndKED,rev 2017-05,3380,1780
+iIndMatImm,rev 2017-05,3380,1817
+iIndPediPac,rev 2017-05,3380,1854
+iIndPlanDorsal,rev 2017-05,3380,1892
+iIndScoop,rev 2017-05,3380,1930
+iIndSortieRapide,rev 2017-05,3380,1967
+iIndTourniquet,rev 2017-05,3380,2101
+iIndExerCorpsEt,rev 2017-05,3380,2188
+iIndCardioVer,rev 2017-05,3380,2226
+iIndStimCardExt,rev 2017-05,3380,2263
+iIndEndo,rev 2017-05,3563,2347
+tIndRefuse,rev 2017-05,2651,2534
+tIndAnnule,rev 2017-05,2651,2570
+tIndMarcheBras,rev 2017-05,3377,2574
+tIndCChaise,rev 2017-05,3377,2609
+tIndCPosSemiAss,rev 2017-05,3528,2648
+tIndCDecDorsal,rev 2017-05,3528,2685
+tIndCDecLateral,rev 2017-05,3528,2724
+tIndCPediMate,rev 2017-05,3528,2763
+tIndNonUrgent,rev 2017-05,3376,2837
+tIndImmediat,rev 2017-05,3376,2880
+tIndUrgent,rev 2017-05,3376,2911
+tIndCHAvise,rev 2017-05,3631,2911
+iIndAucune,rev 2016-06 impr 2017-05,2644,1512
+iIndO2,rev 2016-06 impr 2017-05,2644,1553
+iIndCanOro,rev 2016-06 impr 2017-05,2795,1596
+iIndCanNaso,rev 2016-06 impr 2017-05,3055,1597
+iIndSuccion,rev 2016-06 impr 2017-05,2644,1638
+iIndSupResp,rev 2016-06 impr 2017-05,2863,1638
+iIndSRCPAP,rev 2016-06 impr 2017-05,2644,1749
+iIndSROxylator,rev 2016-06 impr 2017-05,2643,1679
+iIndOxyAuto,rev 2016-06 impr 2017-05,3172,1681
+iIndOxyManuel,rev 2016-06 impr 2017-05,3172,1718
+iIndEndo,rev 2016-06 impr 2017-05,2845,1796
+iIndStd,rev 2016-06 impr 2017-05,2845,1835
+iIndSA,rev 2016-06 impr 2017-05,2845,1870
+iIndVPOPos,rev 2016-06 impr 2017-05,2845,1912
+iIndVPONeg,rev 2016-06 impr 2017-05,2845,1950
+iIndVentBleu,rev 2016-06 impr 2017-05,2845,1988
+iIndVentBlanc,rev 2016-06 impr 2017-05,2978,1988
+iIndPerfusion1,rev 2016-06 impr 2017-05,2826,2150
+iIndPerfusion1IO,rev 2016-06 impr 2017-05,2826,2189
+iIndPerfusion2,rev 2016-06 impr 2017-05,2826,2263
+iIndPerfusion2IO,rev 2016-06 impr 2017-05,2826,2300
+iIndThoracAig,rev 2016-06 impr 2017-05,2640,2387
+iIndCricothy,rev 2016-06 impr 2017-05,2640,2424
+iIndPyschosociale,rev 2016-06 impr 2017-05,3349,1515
+iIndMonit,rev 2016-06 impr 2017-05,3349,1553
+iIndECG12D,rev 2016-06 impr 2017-05,3390,1590
+iIndECG15D,rev 2016-06 impr 2017-05,3600,1592
+iIndCardioVer,rev 2016-06 impr 2017-05,3348,1673
+iIndStimCardExt,rev 2016-06 impr 2017-05,3348,1711
+iIndConten,rev 2016-06 impr 2017-05,3348,1790
+iIndAttImm,rev 2016-06 impr 2017-05,3348,1827
+iIndGlace,rev 2016-06 impr 2017-05,3348,1865
+iIndNettoyageDePlaie,rev 2016-06 impr 2017-05,3348,1902
+iIndPansements,rev 2016-06 impr 2017-05,3348,1939
+iIndColCer,rev 2016-06 impr 2017-05,3348,1977
+iIndKED,rev 2016-06 impr 2017-05,3348,2015
+iIndMatImm,rev 2016-06 impr 2017-05,3348,2052
+iIndPediPac,rev 2016-06 impr 2017-05,3348,2089
+iIndPlanDorsal,rev 2016-06 impr 2017-05,3348,2126
+iIndScoop,rev 2016-06 impr 2017-05,3348,2164
+iIndSortieRapide,rev 2016-06 impr 2017-05,3348,2202
+iIndExerCorpsEt,rev 2016-06 impr 2017-05,3348,2239
+iIndAutre,rev 2016-06 impr 2017-05,3348,2418
+tIndRefuse,rev 2016-06 impr 2017-05,2640,2529
+tIndAnnule,rev 2016-06 impr 2017-05,2640,2566
+tIndMarcheBras,rev 2016-06 impr 2017-05,3371,2566
+tIndCChaise,rev 2016-06 impr 2017-05,3371,2606
+tIndCPosSemiAss,rev 2016-06 impr 2017-05,3521,2643
+tIndCDecDorsal,rev 2016-06 impr 2017-05,3521,2681
+tIndCDecLateral,rev 2016-06 impr 2017-05,3521,2718
+tIndCPediMate,rev 2016-06 impr 2017-05,3521,2756
+tIndNonUrgent,rev 2016-06 impr 2017-05,3371,2830
+tIndImmediat,rev 2016-06 impr 2017-05,3371,2868
+tIndUrgent,rev 2016-06 impr 2017-05,3371,2906
+tIndCHAvise,rev 2016-06 impr 2017-05,3620,2906
+iIndAucune,rev 2012-01,2644,1512
+iIndO2,rev 2012-01,2644,1553
+iIndCanOro,rev 2012-01,2795,1596
+iIndCanNaso,rev 2012-01,3055,1597
+iIndSuccion,rev 2012-01,2644,1638
+iIndSupResp,rev 2012-01,2863,1638
+iIndSRCPAP,rev 2012-01,2644,1749
+iIndSROxylator,rev 2012-01,2643,1679
+iIndOxyAuto,rev 2012-01,3172,1681
+iIndOxyManuel,rev 2012-01,3172,1718
+iIndEndo,rev 2012-01,2824,1796
+iIndStd,rev 2012-01,2824,1835
+iIndSA,rev 2012-01,2824,1870
+iIndVPOPos,rev 2012-01,2824,1912
+iIndVPONeg,rev 2012-01,2824,1950
+iIndVentBleu,rev 2012-01,2824,1988
+iIndVentBlanc,rev 2012-01,2978,1988
+iIndPerfusion1,rev 2012-01,2826,2150
+iIndPerfusion1IO,rev 2012-01,2826,2189
+iIndPerfusion2,rev 2012-01,2826,2263
+iIndPerfusion2IO,rev 2012-01,2826,2300
+iIndThoracAig,rev 2012-01,2640,2387
+iIndCricothy,rev 2012-01,2640,2424
+iIndPyschosociale,rev 2012-01,3349,1515
+iIndMonit,rev 2012-01,3349,1553
+iIndECG12D,rev 2012-01,3390,1590
+iIndECG15D,rev 2012-01,3600,1592
+iIndCardioVer,rev 2012-01,3348,1673
+iIndStimCardExt,rev 2012-01,3348,1711
+iIndConten,rev 2012-01,3348,1790
+iIndAttImm,rev 2012-01,3348,1827
+iIndGlace,rev 2012-01,3348,1865
+iIndNettoyageDePlaie,rev 2012-01,3348,1902
+iIndPansements,rev 2012-01,3348,1939
+iIndColCer,rev 2012-01,3348,1977
+iIndKED,rev 2012-01,3348,2015
+iIndMatImm,rev 2012-01,3348,2052
+iIndPediPac,rev 2012-01,3348,2089
+iIndPlanDorsal,rev 2012-01,3348,2126
+iIndScoop,rev 2012-01,3348,2164
+iIndSortieRapide,rev 2012-01,3348,2202
+iIndExerCorpsEt,rev 2012-01,3348,2239
+iIndAutre,rev 2012-01,3348,2418
+tIndRefuse,rev 2012-01,2640,2529
+tIndAnnule,rev 2012-01,2640,2566
+tIndMarcheBras,rev 2012-01,3371,2566
+tIndCChaise,rev 2012-01,3371,2606
+tIndCPosSemiAss,rev 2012-01,3521,2643
+tIndCDecDorsal,rev 2012-01,3521,2681
+tIndCDecLateral,rev 2012-01,3521,2718
+tIndCPediMate,rev 2012-01,3521,2756
+tIndNonUrgent,rev 2012-01,3371,2830
+tIndImmediat,rev 2012-01,3371,2868
+tIndUrgent,rev 2012-01,3371,2906
+tIndCHAvise,rev 2012-01,3620,2906
